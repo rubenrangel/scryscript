@@ -20,7 +20,7 @@ const project = new typescript.TypeScriptProject({
   // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
   // devDeps: [],             /* Build dependencies for this module. */
   // packageName: undefined,  /* The "name" in package.json. */
-
+  releaseToNpm: true,
   gitignore: [
     // https://raw.githubusercontent.com/github/gitignore/main/Global/JetBrains.gitignore
     // Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
