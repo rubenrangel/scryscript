@@ -1,4 +1,4 @@
-import { SetType } from './set-type';
+import { SetType } from "./set-type";
 
 /**
  * A Set object represents a group of related Magic cards. All Card objects on Scryfall belong to exactly one set.

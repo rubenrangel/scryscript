@@ -3,68 +3,68 @@
  */
 export enum SetType {
   /** A yearly Magic core set (Tenth Edition, etc). */
-  CORE = 'core',
+  CORE = "core",
 
   /** A rotational expansion set in a block (Zendikar, etc). */
-  EXPANSION = 'expansion',
+  EXPANSION = "expansion",
 
   /** A reprint set that contains no new cards (Modern Masters, etc). */
-  MASTERS = 'masters',
+  MASTERS = "masters",
 
   /** An Arena set designed for Alchemy. */
-  ALCHEMY = 'alchemy',
+  ALCHEMY = "alchemy",
 
   /** Masterpiece Series premium foil cards. */
-  MASTERPIECE = 'masterpiece',
+  MASTERPIECE = "masterpiece",
 
   /** A Commander-oriented gift set. */
-  ARSENAL = 'arsenal',
+  ARSENAL = "arsenal",
 
   /** From the Vault gift sets. */
-  FROM_THE_VAULT = 'from_the_vault',
+  FROM_THE_VAULT = "from_the_vault",
 
   /** Spellbook series gift sets. */
-  SPELLBOOK = 'spellbook',
+  SPELLBOOK = "spellbook",
 
   /** Premium Deck Series deck., */
-  PREMIUM_DECK = 'premium_deck',
+  PREMIUM_DECK = "premium_deck",
 
   /** Duel Decks. */
-  DUEL_DECK = 'duel_deck',
+  DUEL_DECK = "duel_deck",
 
   /** Special draft sets, like Conspiracy and Battlebond. */
-  DRAFT_INNOVATION = 'draft_innovation',
+  DRAFT_INNOVATION = "draft_innovation",
 
   /** Magic Online treasure chest prize sets. */
-  TREASURE_CHEST = 'treasure_chest',
+  TREASURE_CHEST = "treasure_chest",
 
   /** Commander preconstructed decks. */
-  COMMANDER = 'commander',
+  COMMANDER = "commander",
 
   /** Planechase sets. */
-  PLANECHASE = 'planechase',
+  PLANECHASE = "planechase",
 
   /** Archenemy sets */
-  ARCHENEMY = 'archenemy',
+  ARCHENEMY = "archenemy",
 
   /** Vanguard card sets. */
-  VANGUARD = 'vanguard',
+  VANGUARD = "vanguard",
 
   /** A funny un-set or set with funny promos (Unglued, Happy Holidays, etc). */
-  FUNNY = 'funny',
+  FUNNY = "funny",
 
   /** A starter/introductory set (Portal, etc). */
-  STARTER = 'starter',
+  STARTER = "starter",
 
   /** A gift box set. */
-  BOX = 'box',
+  BOX = "box",
 
   /** A set that contains purely promotional cards. */
-  PROMO = 'promo',
+  PROMO = "promo",
 
   /** A set made up of tokens and emblems. */
-  TOKEN = 'token',
+  TOKEN = "token",
 
   /** A set made up of gold-bordered, oversize, or trophy cards that are not legal. */
-  MEMORABILIA = 'memorabilia',
+  MEMORABILIA = "memorabilia",
 }

@@ -57,6 +57,8 @@ junit.xml
 !/.github/workflows/release.yml
 !/.mergify.yml
 !/.github/dependabot.yml
+!/.prettierignore
+!/.prettierrc.json
 !/test/
 !/tsconfig.json
 !/tsconfig.dev.json
