@@ -1,17 +1,21 @@
-const { typescript } = require('projen');
+const { typescript } = require("projen");
 const project = new typescript.TypeScriptProject({
-  defaultReleaseBranch: 'main',
-  name: 'scryscript',
+  defaultReleaseBranch: "main",
+  name: "scryscript",
   dependabot: true,
+  prettier: true,
+  prettierOptions: {
+    settings: {
+      printWidth: 120,
+    },
+  },
   jestOptions: {
-    configFilePath: 'jest.config.json',
+    configFilePath: "jest.config.json",
   },
   githubOptions: {
     pullRequestLintOptions: {
       semanticTitleOptions: {
-        types: [
-          'feat', 'fix', 'chore', 'ci',
-        ],
+        types: ["feat", "fix", "chore", "ci"],
       },
     },
   },
@@ -25,22 +29,25 @@ const project = new typescript.TypeScriptProject({
     // https://raw.githubusercontent.com/github/gitignore/main/Global/JetBrains.gitignore
     // Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
     // Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
-    '.idea/**/workspace.xml',
-    '.idea/**/tasks.xml',
-    '.idea/**/usage.statistics.xml',
-    '.idea/**/dictionaries',
-    '.idea/**/shelf',
-    '.idea/**/contentModel.xml',
-    '.idea/**/dataSources/',
-    '.idea/**/dataSources.ids',
-    '.idea/**/dataSources.local.xml',
-    '.idea/**/sqlDataSources.xml',
-    '.idea/**/dynamic.xml',
-    '.idea/**/uiDesigner.xml',
-    '.idea/**/dbnavigator.xml',
-    '*.iws',
-    'out/',
-    '.idea/httpRequests',
+    ".idea/**/workspace.xml",
+    ".idea/**/tasks.xml",
+    ".idea/**/usage.statistics.xml",
+    ".idea/**/dictionaries",
+    ".idea/**/shelf",
+    ".idea/**/contentModel.xml",
+    ".idea/**/dataSources/",
+    ".idea/**/dataSources.ids",
+    ".idea/**/dataSources.local.xml",
+    ".idea/**/sqlDataSources.xml",
+    ".idea/**/dynamic.xml",
+    ".idea/**/uiDesigner.xml",
+    ".idea/**/dbnavigator.xml",
+    "*.iws",
+    "out/",
+    ".idea/httpRequests",
   ],
 });
+
+project.prettier?.addIgnorePattern("/coverage");
+
 project.synth();
