@@ -15,7 +15,7 @@ const project = new typescript.TypeScriptProject({
   githubOptions: {
     pullRequestLintOptions: {
       semanticTitleOptions: {
-        types: ["feat", "fix", "chore", "ci"],
+        types: ["build", "feat", "fix", "chore", "ci"],
       },
     },
   },
