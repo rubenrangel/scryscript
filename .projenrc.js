@@ -49,6 +49,11 @@ const project = new typescript.TypeScriptProject({
   ],
 });
 
+// Use escape hatch to remove Jest from `env`
+project.eslint.config.env = {
+  node: true,
+};
+
 project.addPackageIgnore("/test-reports/");
 project.addPackageIgnore("junit.xml");
 project.addPackageIgnore("/coverage/");
