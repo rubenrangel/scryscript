@@ -46,11 +46,10 @@ jspm_packages/
 *.iws
 out/
 .idea/httpRequests
-!/.projenrc.js
 /test-reports/
 junit.xml
-!/jest.config.json
-/coverage/
+/coverage
+!/.projenrc.js
 !/.github/workflows/build.yml
 /dist/changelog.md
 /dist/version.txt

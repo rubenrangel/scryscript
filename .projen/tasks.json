@@ -161,7 +161,7 @@
       "description": "Run tests",
       "steps": [
         {
-          "exec": "jest --passWithNoTests --updateSnapshot",
+          "exec": "vitest run",
           "receiveArgs": true
         },
         {
@@ -171,10 +171,10 @@
     },
     "test:watch": {
       "name": "test:watch",
-      "description": "Run jest in watch mode",
+      "description": "Run Vitest in watch mode",
       "steps": [
         {
-          "exec": "jest --watch"
+          "exec": "vitest"
         }
       ]
     },
