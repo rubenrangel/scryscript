@@ -1,3 +1,4 @@
+import { describe, expect, test } from "vitest";
 import { RelatedCardComponent } from "../../src/core/related-card";
 
 describe("RelatedCardComponent", () => {
