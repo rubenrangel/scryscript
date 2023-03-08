@@ -9,9 +9,7 @@ const project = new typescript.TypeScriptProject({
       printWidth: 120,
     },
   },
-  jestOptions: {
-    configFilePath: "jest.config.json",
-  },
+  jest: false,
   githubOptions: {
     pullRequestLintOptions: {
       semanticTitleOptions: {
@@ -22,7 +20,7 @@ const project = new typescript.TypeScriptProject({
   pullRequestTemplate: false,
   // deps: [],                /* Runtime dependencies of this module. */
   // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],             /* Build dependencies for this module. */
+  devDeps: ["vitest"] /* Build dependencies for this module. */,
   // packageName: undefined,  /* The "name" in package.json. */
   releaseToNpm: true,
   gitignore: [
@@ -45,9 +43,23 @@ const project = new typescript.TypeScriptProject({
     "*.iws",
     "out/",
     ".idea/httpRequests",
+    "/test-reports/",
+    "junit.xml",
+    "/coverage",
   ],
 });
 
+project.addPackageIgnore("/test-reports/");
+project.addPackageIgnore("junit.xml");
+project.addPackageIgnore("/coverage/");
+
 project.prettier?.addIgnorePattern("/coverage");
+
+project.testTask.prependExec("vitest run", { receiveArgs: true });
+
+project.addTask("test:watch", {
+  description: "Run Vitest in watch mode",
+  exec: "vitest",
+});
 
 project.synth();

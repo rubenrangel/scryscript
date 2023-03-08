@@ -1,3 +1,4 @@
+import { describe, expect, test } from "vitest";
 import { Color } from "../../src/core/color";
 
 describe("Color", () => {
