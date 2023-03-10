@@ -1,4 +1,6 @@
-import { ImageUris } from "./card-face";
+import { CardFace, ImageUris } from "./card-face";
+import { Color } from "./color";
+import { RelatedCard } from "./related-card";
 
 export enum BorderColor {
   BLACK = "black",
@@ -39,6 +41,108 @@ export enum Frame {
    * The frame used on cards from the future.
    */
   FUTURE = "future",
+}
+
+export enum Layout {
+  /**
+   * A standard Magic card with one face.
+   */
+  NORMAL = "normal",
+
+  /**
+   * A split-faced card.
+   */
+  SPLIT = "split",
+
+  /**
+   * Cards that invert vertically with the flip keyword.
+   */
+  FLIP = "flip",
+
+  /**
+   * Double-sided cards that transform.
+   */
+  TRANSFORM = "transform",
+
+  /**
+   * Double-sided cards that can be played either-side.
+   */
+  MODAL_DFC = "modal_dfc",
+
+  /**
+   * Cards with meld parts printed on the back.
+   */
+  MELD = "meld",
+
+  /**
+   * Cards with Level Up.
+   */
+  LEVELER = "leveler",
+
+  /**
+   * Class-type enchantment cards.
+   */
+  CLASS = "class",
+
+  /**
+   * Saga-type cards.
+   */
+  SAGA = "saga",
+
+  /**
+   * Cards with an Adventure spell part.
+   */
+  ADVENTURE = "adventure",
+
+  /**
+   * Plane and Phenomenon-type cards.
+   */
+  PLANAR = "planar",
+
+  /**
+   * Scheme-type cards.
+   */
+  SCHEME = "scheme",
+
+  /**
+   * Vanguard-type cards.
+   */
+  VANGUARD = "vanguard",
+
+  /**
+   * Token cards.
+   */
+  TOKEN = "token",
+
+  /**
+   * Tokens with another token printed on the back.
+   */
+  DOUBLE_FACED_TOKEN = "double_faced_token",
+
+  /**
+   * Emblem cards.
+   */
+  EMBLEM = "emblem",
+
+  /**
+   * Cards with Augment.
+   */
+  AUGMENT = "augment",
+
+  /**
+   * Host-type cards.
+   */
+  HOST = "host",
+
+  /**
+   * Art Series collectable double-faced cards.
+   */
+  ART_SERIES = "art_series",
+
+  /**
+   * A Magic card with two sides that are unrelated.
+   */
+  REVERSIBLE_CARD = "reversible_card",
 }
 
 /**
@@ -167,6 +271,13 @@ export enum Game {
   MTGO = "mtgo",
 }
 
+export enum Legalities {
+  LEGAL = "legal",
+  NOT_LEGAL = "not_legal",
+  RESTRICTED = "restricted",
+  BANNED = "banned",
+}
+
 export enum ImageStatus {
   MISSING = "missing",
   PLACEHOLDER = "placeholder",
@@ -271,6 +382,127 @@ export interface CardFields {
    * A link to this card object on Scryfall’s API.
    */
   uri: string;
+}
+
+export interface CardGameplayFields {
+  /**
+   * If this card is closely related to other cards, this property will be an array with {@link RelatedCard}.
+   */
+  allParts?: RelatedCard[] | null;
+
+  /**
+   * An array of {@link CardFace} objects, if this card is multifaced.
+   */
+  cardFaces?: CardFace[] | null;
+
+  /**
+   * The card’s mana value. Note that some funny cards have fractional mana costs.
+   */
+  cmc: number;
+
+  /**
+   * This card’s color identity.
+   */
+  colorIdentity: Array<Color | string>;
+
+  /**
+   * The colors in this card’s color indicator, if any. A null value for this field indicates the card does not have
+   * one.
+   */
+  colorIndicator?: Array<Color | string> | null;
+
+  /**
+   * This card’s colors, if the overall card has colors defined by the rules. Otherwise, the colors will be on
+   * {@link cardFaces}.
+   */
+  colors?: Array<Color | string> | null;
+
+  /**
+   * This card’s overall rank/popularity on EDHREC. Not all cards are ranked.
+   */
+  edhrecRank?: number | null;
+
+  /**
+   * This card’s hand modifier, if it is Vanguard card. This value will contain a delta, such as `-1`.
+   */
+  handModifier?: string | null;
+
+  /**
+   *  An array of keywords that this card uses, such as `Flying` and `Cumulative upkeep`.
+   */
+  keywords: string[];
+
+  /**
+   * A code for this card’s layout.
+   */
+  layout: Layout | string;
+
+  /**
+   * An object describing the legality of this card across play formats.
+   */
+  legalities: Record<string, Legalities | string>;
+
+  /**
+   * This card’s life modifier, if it is Vanguard card. This value will contain a delta, such as `+2`.
+   */
+  lifeModifier?: string | null;
+
+  /**
+   * This loyalty if any. Note that some cards have loyalties that are not numeric, such as `X`.
+   */
+  loyalty?: string | null;
+
+  /**
+   * The mana cost for this card. This value will be any empty string "" if the cost is absent. Remember that per the
+   * game rules, a missing mana cost and a mana cost of `{0}` are different values. Multi-faced cards will report this
+   * value in {@link cardFaces}.
+   */
+  manaCost?: string | null;
+
+  /**
+   * The name of this card. If this card has multiple faces, this field will contain both names separated by ` // `.
+   */
+  name: string;
+
+  /**
+   * The Oracle text for this card, if any.
+   */
+  oracleText?: string | null;
+
+  /**
+   * True if this card is oversized.
+   */
+  oversized: boolean;
+
+  /**
+   * This card’s rank/popularity on Penny Dreadful. Not all cards are ranked.
+   */
+  pennyRank?: number | null;
+
+  /**
+   * This card’s power, if any. Note that some cards have powers that are not numeric, such as `*`.
+   */
+  power?: string;
+
+  /**
+   * Colors of mana that this card could produce.
+   */
+  producedMana?: Color[] | null;
+
+  /**
+   * True if this card is on the Reserved List.
+   */
+  reserved: boolean;
+
+  /**
+   * This card’s toughness, if any. Note that some cards have toughnesses that are not numeric, such as `*`.
+   */
+  toughness?: string | null;
+
+  /**
+   * The type line of this card.
+   */
+  typeLine: string;
 }
 
 export interface CardPrintFields {

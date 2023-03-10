@@ -1,5 +1,16 @@
 import { describe, expect, test } from "vitest";
-import { BorderColor, Finish, Frame, FrameEffect, Game, ImageStatus, Rarity, SecurityStamp } from "../../src/core/card";
+import {
+  BorderColor,
+  Finish,
+  Frame,
+  FrameEffect,
+  Game,
+  ImageStatus,
+  Layout,
+  Legalities,
+  Rarity,
+  SecurityStamp,
+} from "../../src/core/card";
 
 describe("BorderColor", () => {
   test.each([
@@ -30,6 +41,32 @@ describe("Frame", () => {
     [Frame._2003, "2003"],
     [Frame._2015, "2015"],
     [Frame.FUTURE, "future"],
+  ])("enum %s equals %s", (enumValue, expectedValue) => {
+    expect(enumValue).toBe(expectedValue);
+  });
+});
+
+describe("Layout", () => {
+  test.each([
+    [Layout.NORMAL, "normal"],
+    [Layout.SPLIT, "split"],
+    [Layout.FLIP, "flip"],
+    [Layout.TRANSFORM, "transform"],
+    [Layout.MODAL_DFC, "modal_dfc"],
+    [Layout.MELD, "meld"],
+    [Layout.LEVELER, "leveler"],
+    [Layout.CLASS, "class"],
+    [Layout.SAGA, "saga"],
+    [Layout.ADVENTURE, "adventure"],
+    [Layout.PLANAR, "planar"],
+    [Layout.SCHEME, "scheme"],
+    [Layout.VANGUARD, "vanguard"],
+    [Layout.DOUBLE_FACED_TOKEN, "double_faced_token"],
+    [Layout.EMBLEM, "emblem"],
+    [Layout.AUGMENT, "augment"],
+    [Layout.HOST, "host"],
+    [Layout.ART_SERIES, "art_series"],
+    [Layout.REVERSIBLE_CARD, "reversible_card"],
   ])("enum %s equals %s", (enumValue, expectedValue) => {
     expect(enumValue).toBe(expectedValue);
   });
@@ -70,6 +107,17 @@ describe("Game", () => {
     [Game.PAPER, "paper"],
     [Game.ARENA, "arena"],
     [Game.MTGO, "mtgo"],
+  ])("enum %s equals %s", (enumValue, expectedValue) => {
+    expect(enumValue).toBe(expectedValue);
+  });
+});
+
+describe("Legalities", () => {
+  test.each([
+    [Legalities.LEGAL, "legal"],
+    [Legalities.NOT_LEGAL, "not_legal"],
+    [Legalities.RESTRICTED, "restricted"],
+    [Legalities.BANNED, "banned"],
   ])("enum %s equals %s", (enumValue, expectedValue) => {
     expect(enumValue).toBe(expectedValue);
   });
