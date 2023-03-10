@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { BorderColor, Finish, Frame, FrameEffect, Game, Rarity, SecurityStamp } from "../../src/core/card";
+import { BorderColor, Finish, Frame, FrameEffect, Game, ImageStatus, Rarity, SecurityStamp } from "../../src/core/card";
 
 describe("BorderColor", () => {
   test.each([
@@ -70,6 +70,17 @@ describe("Game", () => {
     [Game.PAPER, "paper"],
     [Game.ARENA, "arena"],
     [Game.MTGO, "mtgo"],
+  ])("enum %s equals %s", (enumValue, expectedValue) => {
+    expect(enumValue).toBe(expectedValue);
+  });
+});
+
+describe("ImageStatus", () => {
+  test.each([
+    [ImageStatus.LOW_RES, "lowres"],
+    [ImageStatus.HIGH_RES_SCAN, "highres_scan"],
+    [ImageStatus.MISSING, "missing"],
+    [ImageStatus.PLACEHOLDER, "placeholder"],
   ])("enum %s equals %s", (enumValue, expectedValue) => {
     expect(enumValue).toBe(expectedValue);
   });
