@@ -201,6 +201,78 @@ export enum SecurityStamp {
   HEART = "heart",
 }
 
+export interface CardFields {
+  /**
+   * This card’s Arena ID, if any. A large percentage of cards are not available on Arena and do not have this ID.
+   */
+  arenaId?: number | null;
+
+  /**
+   * A unique ID for this card in Scryfall’s database.
+   */
+  id: string;
+
+  /**
+   * A language code for this printing.
+   */
+  lang: string;
+
+  /**
+   * This card’s Magic Online ID (also known as the Catalog ID), if any. A large percentage of cards are not available on Magic Online and do not have this ID.
+   */
+  mtgoId?: number | null;
+
+  /**
+   * This card’s foil Magic Online ID (also known as the Catalog ID), if any. A large percentage of cards are not available on Magic Online and do not have this ID.
+   */
+  mtgoFoilId?: number | null;
+
+  /**
+   * This card’s multiverse IDs on Gatherer, if any, as an array of integers. Note that Scryfall includes many promo cards, tokens, and other esoteric objects that do not have these identifiers.
+   */
+  multiverseIds?: number[] | null;
+
+  /**
+   * This card’s ID on TCGplayer’s API, also known as the `productId`.
+   */
+  tcgPlayerId?: number | null;
+
+  /**
+   * This card’s ID on TCGplayer’s API, for its etched version if that version is a separate product.
+   */
+  tcgPlayerEtchedId?: number | null;
+
+  /**
+   * This card’s ID on Cardmarket’s API, also known as the `idProduct`.
+   */
+  cardmarketId?: number | null;
+
+  /**
+   * A unique ID for this card’s oracle identity. This value is consistent across reprinted card editions, and unique among different cards with the same name (tokens, Unstable variants, etc).
+   */
+  oracleId: string;
+
+  /**
+   * A link to where you can begin paginating all re/prints for this card on Scryfall’s API.
+   */
+  printsSearchUri: string;
+
+  /**
+   * A link to this card’s rulings list on Scryfall’s API.
+   */
+  rulingsUri: string;
+
+  /**
+   * A link to this card’s permapage on Scryfall’s website.
+   */
+  scryfallUri: string;
+
+  /**
+   * A link to this card object on Scryfall’s API.
+   */
+  uri: string;
+}
+
 export interface CardPrintFields {
   /**
    * The name of the illustrator of this card. Newly spoiled cards may not have this field yet.
