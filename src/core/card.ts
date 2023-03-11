@@ -1,5 +1,6 @@
 import { CardFace, ImageUris } from "./card-face";
 import { Color } from "./color";
+import { IScryfallObject } from "./iscryfall-object";
 import { RelatedCard } from "./related-card";
 
 export enum BorderColor {
@@ -742,4 +743,9 @@ export interface CardPrintFields {
   } | null;
 }
 
-export interface Card extends CardFields, CardGameplayFields, CardPrintFields {}
+export interface Card extends IScryfallObject, CardFields, CardGameplayFields, CardPrintFields {
+  /**
+   * @inheritDoc
+   */
+  object: "card";
+}

@@ -1,11 +1,17 @@
 import { Color } from "./color";
+import { IScryfallObject } from "./iscryfall-object";
 
 export type ImageUris = Record<string, string>;
 
 /**
  * Multiface cards have a `cardFaces` property containing at least two Card Face objects.
  */
-export interface CardFace {
+export interface CardFace extends IScryfallObject {
+  /**
+   * @inheritDoc
+   */
+  object: "card_face";
+
   /**
    * The name of the illustrator of this card face. Newly spoiled cards may not have this field yet.
    */
