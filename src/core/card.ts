@@ -741,3 +741,5 @@ export interface CardPrintFields {
     source?: string | null;
   } | null;
 }
+
+export interface Card extends CardFields, CardGameplayFields, CardPrintFields {}
