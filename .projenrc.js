@@ -9,6 +9,12 @@ const project = new typescript.TypeScriptProject({
       printWidth: 120,
     },
   },
+  minNodeVersion: "18.0.0",
+  tsconfig: {
+    compilerOptions: {
+      lib: ["dom", "es2019"],
+    },
+  },
   jest: false,
   githubOptions: {
     pullRequestLintOptions: {
