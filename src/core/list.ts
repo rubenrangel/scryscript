@@ -7,6 +7,11 @@ import { IScryfallObject } from "./iscryfall-object";
  */
 export interface ScryfallList<ScryfallResource> extends IScryfallObject {
   /**
+   * @inheritDoc
+   */
+  object: "list";
+
+  /**
    * An array of the requested objects, in a specific order.
    */
   data: ScryfallResource[];
@@ -20,11 +25,6 @@ export interface ScryfallList<ScryfallResource> extends IScryfallObject {
    * If there is a page beyond the current page, this field will contain a full API URI to that page.
    */
   nextPage?: string | null;
-
-  /**
-   * @inheritDoc
-   */
-  object: "list";
 
   /**
    * An array of human-readable warnings issued when generating this list, as strings. Warnings are non-fatal issues

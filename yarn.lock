@@ -2611,6 +2611,11 @@ quick-lru@^4.0.1:
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-4.0.1.tgz#5b8878f113a58217848c6482026c73e1ba57727f"
   integrity sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==
 
+radash@*:
+  version "10.7.1"
+  resolved "https://registry.yarnpkg.com/radash/-/radash-10.7.1.tgz#560a839c990d59d77ff93dc506e6b35ff0f4a6a8"
+  integrity sha512-iEytYXfDN0DxU9fjf8q0aVdikGJxxYYoG6nY6WqYEBXfXjrghiiNhx+IAFmtbrKy2S2aVETq7RBxhZbaEHE4YA==
+
 react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"

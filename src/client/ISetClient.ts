@@ -2,7 +2,27 @@ import { ScryfallResponse } from "./ScryfallResponse";
 import { ScryfallList } from "../core/list";
 import { Set } from "../core/set";
 
-export type GetSetParams = { code: string } | { mtgoCode: string } | { tcgplayerId: number } | { id: string };
+export type SetIdProps = {
+  id: string;
+};
+
+export type SetCodeProps = {
+  code: string;
+};
+
+// export type SetMtgoCodeProps = {
+//   mtgoCode: string;
+// };
+
+export type SetTcgPlayerIdProps = {
+  tcgplayerId: number;
+};
+
+export type GetSetProps =
+  | SetIdProps
+  | SetCodeProps
+  // | SetMtgoCodeProps
+  | SetTcgPlayerIdProps;
 
 export interface ISetClient {
   /**
@@ -13,5 +33,5 @@ export interface ISetClient {
   /**
    * Get a Set from Scryfall.
    */
-  getSet(params: GetSetParams): Promise<ScryfallResponse<Set>>;
+  getSet(params: GetSetProps): Promise<ScryfallResponse<Set>>;
 }
