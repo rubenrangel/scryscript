@@ -15,15 +15,23 @@ export interface Ruling extends IScryfallObject {
    */
   object: "ruling";
 
-  /** A computer-readable string indicating which company produced this ruling, either `wotc` or `scryfall`. */
+  /**
+   * A computer-readable string indicating which company produced this ruling, either `wotc` or `scryfall`.
+   */
   source: string;
 
-  /** The date when the ruling or note was published. */
+  /**
+   * The date when the ruling or note was published
+   */
   publishedAt: Date;
 
-  /** The text of the ruling. */
+  /**
+   * The text of the ruling.
+   */
   comment: string;
 
-  /** Oracle ID of the card. */
+  /**
+   * Oracle ID of the card.
+   */
   oracleId?: string | null;
 }
