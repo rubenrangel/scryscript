@@ -1,4 +1,4 @@
-import { camel, mapKeys } from "radash";
+import { BaseClient } from "./BaseClient";
 import { GetSetProps, ISetClient, SetCodeProps, SetIdProps, SetTcgPlayerIdProps } from "./ISetClient";
 import { ScryfallResponse } from "./ScryfallResponse";
 import { ScryfallList } from "../core/list";
@@ -20,29 +20,20 @@ function isSetTcgPlayerIdProps(props: any): props is SetTcgPlayerIdProps {
   return props.hasOwnProperty("tcgplayerId");
 }
 
-export class SetClient implements ISetClient {
-  constructor(protected readonly sendRequest: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>) {}
+export class SetClient extends BaseClient implements ISetClient {
+  protected transformSet(set: Record<string, unknown>): Set {
+    set.releasedAt = new Date(set.releasedAt as string);
 
-  protected transformList(list: Record<string, any>, dataTransformer: (...args: any[]) => any) {
-    const ret = mapKeys(list, (key) => camel(key)) as any;
-    ret.data = ret.data.map((d: any) => dataTransformer(d));
-
-    return ret;
-  }
-
-  protected transformSet(set: Record<string, any>) {
-    const transformedSet = mapKeys(set, (key) => camel(key)) as any;
-    transformedSet.releasedAt = new Date(transformedSet.releasedAt);
-
-    return transformedSet;
+    return set as unknown as Set;
   }
 
   async listSets(): Promise<ScryfallResponse<ScryfallList<Set>>> {
     const response = await this.sendRequest("https://api.scryfall.com/sets");
 
-    const sets = await response.json();
+    const setsData = this.camelCaseProperties(await response.json());
+    const setsList = this.transformList(setsData, this.transformSet);
 
-    return this.transformList(sets, this.transformSet);
+    return setsList as unknown as ScryfallList<Set>;
   }
 
   async getSet(params: GetSetProps): Promise<ScryfallResponse<Set>> {
@@ -64,8 +55,7 @@ export class SetClient implements ISetClient {
 
     const response = await this.sendRequest(url);
 
-    const set = await response.json();
-
-    return this.transformSet(set);
+    const setData = this.camelCaseProperties(await response.json());
+    return this.transformSet(setData);
   }
 }
