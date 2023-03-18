@@ -40,7 +40,7 @@ describe("SetClient", () => {
       clientStub = vi.fn();
       clientStub.mockResolvedValue(scryfallResponse);
       const client = new SetClient(clientStub);
-      response = (await client.listSets()) as ScryfallList<Set>;
+      response = (await client.listSets({ url: "/sets" })) as ScryfallList<Set>;
     });
 
     test("it calls the correct route", () => {

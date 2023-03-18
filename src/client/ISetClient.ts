@@ -2,6 +2,18 @@ import { ScryfallResponse } from "./ScryfallResponse";
 import { ScryfallList } from "../core/list";
 import { Set } from "../core/set";
 
+export interface IListSetsRequest {
+  readonly url: string;
+}
+
+export class ListSetsRequest {
+  public readonly url: string;
+
+  constructor() {
+    this.url = "/sets";
+  }
+}
+
 export interface GetSetRequest {
   /**
    * The Scryfall API path to use in the request.
@@ -41,7 +53,7 @@ export interface ISetClient {
   /**
    * Get all Sets from Scryfall.
    */
-  listSets(): Promise<ScryfallResponse<ScryfallList<Set>>>;
+  listSets(request: IListSetsRequest): Promise<ScryfallResponse<ScryfallList<Set>>>;
 
   /**
    * Get a Set from Scryfall.

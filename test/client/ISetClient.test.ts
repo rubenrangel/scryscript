@@ -1,5 +1,18 @@
 import { describe, expect, test } from "vitest";
-import { GetSetCodeRequest, GetSetIdRequest, GetSetTcgPlayerIdRequest } from "../../src/client/ISetClient";
+import {
+  GetSetCodeRequest,
+  GetSetIdRequest,
+  GetSetTcgPlayerIdRequest,
+  ListSetsRequest,
+} from "../../src/client/ISetClient";
+
+describe("ListSetsRequest", () => {
+  test("it returns the correct URL", () => {
+    const request = new ListSetsRequest();
+
+    expect(request.url).toEqual("/sets");
+  });
+});
 
 describe("GetSetIdRequest", () => {
   test("it returns the correct URL", () => {
