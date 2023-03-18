@@ -1,5 +1,5 @@
 import { BaseClient } from "./BaseClient";
-import { GetSetRequest, ISetClient, IListSetsRequest } from "./ISetClient";
+import { IGetSetRequest, ISetClient, IListSetsRequest } from "./ISetClient";
 import { ScryfallResponse } from "./ScryfallResponse";
 import { ScryfallList } from "../core/list";
 import { Set } from "../core/set";
@@ -19,7 +19,7 @@ export class SetClient extends BaseClient implements ISetClient {
     return setsList as unknown as ScryfallList<Set>;
   }
 
-  async getSet(request: GetSetRequest): Promise<ScryfallResponse<Set>> {
+  async getSet(request: IGetSetRequest): Promise<ScryfallResponse<Set>> {
     const response = await this.sendRequest(request.url);
     const setData = await response.json();
 
