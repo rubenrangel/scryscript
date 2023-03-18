@@ -16,7 +16,6 @@ export class RulingsClient extends BaseClient implements IRulingsClient {
    */
   async listRulings(props: ListRulingsRequest): Promise<ScryfallResponse<ScryfallList<Ruling>>> {
     const response = await this.sendRequest(props.url);
-
     const rulingsData = this.camelCaseProperties(await response.json());
     const rulingList = this.transformList(rulingsData, this.transformRulingData);
 

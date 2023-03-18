@@ -2,27 +2,40 @@ import { ScryfallResponse } from "./ScryfallResponse";
 import { ScryfallList } from "../core/list";
 import { Set } from "../core/set";
 
-export type SetIdProps = {
-  id: string;
-};
+export interface GetSetRequest {
+  /**
+   * The Scryfall API path to use in the request.
+   *
+   * Does not include the host or protocol.
+   *
+   * @example /sets/1234
+   */
+  readonly url: string;
+}
 
-export type SetCodeProps = {
-  code: string;
-};
+export class GetSetIdRequest implements GetSetRequest {
+  public readonly url: string;
 
-// export type SetMtgoCodeProps = {
-//   mtgoCode: string;
-// };
+  constructor(props: { id: string }) {
+    this.url = `/sets/${props.id}`;
+  }
+}
 
-export type SetTcgPlayerIdProps = {
-  tcgplayerId: number;
-};
+export class GetSetCodeRequest implements GetSetRequest {
+  public readonly url: string;
 
-export type GetSetProps =
-  | SetIdProps
-  | SetCodeProps
-  // | SetMtgoCodeProps
-  | SetTcgPlayerIdProps;
+  constructor(props: { setCode: string }) {
+    this.url = `/sets/${props.setCode}`;
+  }
+}
+
+export class GetSetTcgPlayerIdRequest implements GetSetRequest {
+  public readonly url: string;
+
+  constructor(props: { tcgplayerId: number }) {
+    this.url = `/sets/tcgplayer/${props.tcgplayerId}`;
+  }
+}
 
 export interface ISetClient {
   /**
@@ -33,5 +46,5 @@ export interface ISetClient {
   /**
    * Get a Set from Scryfall.
    */
-  getSet(params: GetSetProps): Promise<ScryfallResponse<Set>>;
+  getSet(request: GetSetRequest): Promise<ScryfallResponse<Set>>;
 }
