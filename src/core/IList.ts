@@ -1,11 +1,11 @@
-import { Card } from "./card";
-import { IScryfallObject } from "./iscryfall-object";
+import { ICard } from "./ICard";
+import { IScryfallObject } from "./IScryfallObject";
 
 /**
  * Represents a requested sequence of other objects (Cards, Sets, etc). List objects may be paginated, and also include
  * information about issues raised when generating the list.
  */
-export interface ScryfallList<ScryfallResource> extends IScryfallObject {
+export interface IScryfallList<ScryfallResource> extends IScryfallObject {
   /**
    * @inheritDoc
    */
@@ -34,7 +34,7 @@ export interface ScryfallList<ScryfallResource> extends IScryfallObject {
   warnings?: string[] | null;
 }
 
-export interface CardList extends ScryfallList<Card> {
+export interface ICardList extends IScryfallList<ICard> {
   /**
    * The total number of cards found across all pages.
    */

@@ -1,12 +1,12 @@
 import { beforeAll, describe, expect, Mock, test, vi } from "vitest";
 import { SetClient } from "../../src/client/SetClient";
-import { ScryfallList } from "../../src/core/list";
-import { Set } from "../../src/core/set";
+import { IScryfallList } from "../../src/core/IList";
+import { ISet } from "../../src/core/ISet";
 
 describe("SetClient", () => {
   describe("listSets", () => {
     let clientStub: Mock;
-    let response: ScryfallList<Set>;
+    let response: IScryfallList<ISet>;
 
     beforeAll(async () => {
       const scryfallResponse = new Response(
@@ -40,7 +40,7 @@ describe("SetClient", () => {
       clientStub = vi.fn();
       clientStub.mockResolvedValue(scryfallResponse);
       const client = new SetClient(clientStub);
-      response = (await client.listSets({ url: "/sets" })) as ScryfallList<Set>;
+      response = (await client.listSets({ url: "/sets" })) as IScryfallList<ISet>;
     });
 
     test("it calls the correct route", () => {
@@ -49,7 +49,7 @@ describe("SetClient", () => {
     });
 
     test("Scryfall API response is marshalled", () => {
-      expect(response).toMatchObject<ScryfallList<Set>>({
+      expect(response).toMatchObject<IScryfallList<ISet>>({
         object: "list",
         hasMore: false,
         data: [
@@ -80,7 +80,7 @@ describe("SetClient", () => {
 
   describe("getSet", () => {
     let clientStub: Mock;
-    let response: Set;
+    let response: ISet;
 
     beforeAll(async () => {
       const scryfallResponse = new Response(
@@ -108,7 +108,7 @@ describe("SetClient", () => {
       clientStub = vi.fn();
       clientStub.mockResolvedValue(scryfallResponse);
       const client = new SetClient(clientStub);
-      response = (await client.getSet({ url: "/sets/1234" })) as Set;
+      response = (await client.getSet({ url: "/sets/1234" })) as ISet;
     });
 
     test("it calls the correct route", () => {
@@ -117,7 +117,7 @@ describe("SetClient", () => {
     });
 
     test("Scryfall API response is marshalled", () => {
-      expect(response).toMatchObject<Set>({
+      expect(response).toMatchObject<ISet>({
         object: "set",
         id: "cd05036f-2698-43e6-a48e-5c8d82f0a551",
         code: "cmm",

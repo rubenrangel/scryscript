@@ -1,5 +1,5 @@
-import { Color } from "./color";
-import { IScryfallObject } from "./iscryfall-object";
+import { Color } from "./Color";
+import { IScryfallObject } from "./IScryfallObject";
 
 export interface ICardSymbol extends IScryfallObject {
   /**

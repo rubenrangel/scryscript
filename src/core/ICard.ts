@@ -1,7 +1,7 @@
-import { CardFace, ImageUris } from "./card-face";
-import { Color } from "./color";
-import { IScryfallObject } from "./iscryfall-object";
-import { RelatedCard } from "./related-card";
+import { Color } from "./Color";
+import { ICardFace, ImageUris } from "./ICardFace";
+import { IRelatedCard } from "./IRelatedCard";
+import { IScryfallObject } from "./IScryfallObject";
 
 export enum BorderColor {
   BLACK = "black",
@@ -313,7 +313,7 @@ export enum SecurityStamp {
   HEART = "heart",
 }
 
-export interface CardFields {
+export interface ICardFields {
   /**
    * This card’s Arena ID, if any. A large percentage of cards are not available on Arena and do not have this ID.
    */
@@ -385,16 +385,16 @@ export interface CardFields {
   uri: string;
 }
 
-export interface CardGameplayFields {
+export interface ICardGameplayFields {
   /**
-   * If this card is closely related to other cards, this property will be an array with {@link RelatedCard}.
+   * If this card is closely related to other cards, this property will be an array with {@link IRelatedCard}.
    */
-  allParts?: RelatedCard[] | null;
+  allParts?: IRelatedCard[] | null;
 
   /**
-   * An array of {@link CardFace} objects, if this card is multifaced.
+   * An array of {@link ICardFace} objects, if this card is multifaced.
    */
-  cardFaces?: CardFace[] | null;
+  cardFaces?: ICardFace[] | null;
 
   /**
    * The card’s mana value. Note that some funny cards have fractional mana costs.
@@ -506,7 +506,7 @@ export interface CardGameplayFields {
   typeLine: string;
 }
 
-export interface CardPrintFields {
+export interface ICardPrintFields {
   /**
    * The name of the illustrator of this card. Newly spoiled cards may not have this field yet.
    */
@@ -743,7 +743,7 @@ export interface CardPrintFields {
   } | null;
 }
 
-export interface Card extends IScryfallObject, CardFields, CardGameplayFields, CardPrintFields {
+export interface ICard extends IScryfallObject, ICardFields, ICardGameplayFields, ICardPrintFields {
   /**
    * @inheritDoc
    */

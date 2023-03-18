@@ -1,4 +1,4 @@
-import { IScryfallObject } from "./iscryfall-object";
+import { IScryfallObject } from "./IScryfallObject";
 
 export enum RelatedCardComponent {
   TOKEN = "token",
@@ -13,7 +13,7 @@ export enum RelatedCardComponent {
  *
  * @see https://scryfall.com/docs/api/cards#related-card-objects
  */
-export interface RelatedCard extends IScryfallObject {
+export interface IRelatedCard extends IScryfallObject {
   /**
    * @inheritDoc
    */

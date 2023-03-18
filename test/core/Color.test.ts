@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { Color } from "../../src/core/color";
+import { Color } from "../../src/core/Color";
 
 describe("Color", () => {
   test.each([

@@ -1,12 +1,12 @@
-import { Color } from "./color";
-import { IScryfallObject } from "./iscryfall-object";
+import { Color } from "./Color";
+import { IScryfallObject } from "./IScryfallObject";
 
 export type ImageUris = Record<string, string>;
 
 /**
  * Multiface cards have a `cardFaces` property containing at least two Card Face objects.
  */
-export interface CardFace extends IScryfallObject {
+export interface ICardFace extends IScryfallObject {
   /**
    * @inheritDoc
    */

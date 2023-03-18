@@ -5,7 +5,7 @@
  *
  * @see https://scryfall.com/docs/api/catalogs
  */
-export interface Catalog {
+export interface ICatalog {
   /**
    * A link to the current catalog on Scryfall’s API.
    */

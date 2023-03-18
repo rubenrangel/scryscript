@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { SetType } from "../../src/core/set-type";
+import { SetType } from "../../src/core/SetType";
 
 describe("SetType", () => {
   test.each([

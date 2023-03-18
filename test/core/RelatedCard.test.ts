@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { RelatedCardComponent } from "../../src/core/related-card";
+import { RelatedCardComponent } from "../../src/core/IRelatedCard";
 
 describe("RelatedCardComponent", () => {
   test.each([
