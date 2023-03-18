@@ -1,37 +1,44 @@
+import { IScryfallRequest, ScryfallRequest } from "./IScryfallRequest";
 import { ScryfallResponse } from "./ScryfallResponse";
 import { ScryfallList } from "../core/list";
 import { Set } from "../core/set";
 
-export type SetIdProps = {
-  id: string;
-};
+export interface IListSetsRequest extends IScryfallRequest {}
 
-export type SetCodeProps = {
-  code: string;
-};
+export class ListSetsRequest extends ScryfallRequest {
+  constructor() {
+    super("/sets");
+  }
+}
 
-// export type SetMtgoCodeProps = {
-//   mtgoCode: string;
-// };
+export interface IGetSetRequest extends IScryfallRequest {}
 
-export type SetTcgPlayerIdProps = {
-  tcgplayerId: number;
-};
+export class GetSetIdRequest extends ScryfallRequest implements IGetSetRequest {
+  constructor(props: { id: string }) {
+    super(`/sets/${props.id}`);
+  }
+}
 
-export type GetSetProps =
-  | SetIdProps
-  | SetCodeProps
-  // | SetMtgoCodeProps
-  | SetTcgPlayerIdProps;
+export class GetSetCodeRequest extends ScryfallRequest implements IGetSetRequest {
+  constructor(props: { setCode: string }) {
+    super(`/sets/${props.setCode}`);
+  }
+}
+
+export class GetSetTcgPlayerIdRequest extends ScryfallRequest implements IGetSetRequest {
+  constructor(props: { tcgplayerId: number }) {
+    super(`/sets/tcgplayer/${props.tcgplayerId}`);
+  }
+}
 
 export interface ISetClient {
   /**
    * Get all Sets from Scryfall.
    */
-  listSets(): Promise<ScryfallResponse<ScryfallList<Set>>>;
+  listSets(request: IListSetsRequest): Promise<ScryfallResponse<ScryfallList<Set>>>;
 
   /**
    * Get a Set from Scryfall.
    */
-  getSet(params: GetSetProps): Promise<ScryfallResponse<Set>>;
+  getSet(request: IGetSetRequest): Promise<ScryfallResponse<Set>>;
 }

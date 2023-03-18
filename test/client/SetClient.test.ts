@@ -40,7 +40,7 @@ describe("SetClient", () => {
       clientStub = vi.fn();
       clientStub.mockResolvedValue(scryfallResponse);
       const client = new SetClient(clientStub);
-      response = (await client.listSets()) as ScryfallList<Set>;
+      response = (await client.listSets({ url: "/sets" })) as ScryfallList<Set>;
     });
 
     test("it calls the correct route", () => {
@@ -79,86 +79,63 @@ describe("SetClient", () => {
   });
 
   describe("getSet", () => {
-    describe.each([
-      {
-        name: "get by Scryfall ID",
-        requestProps: { id: "7137ffeb-eb1d-466c-a0d3-3157f52b1b10" },
-        expectedRouteRegex: "/sets/7137ffeb-eb1d-466c-a0d3-3157f52b1b10$",
-      },
-      {
-        name: "get by Set Code",
-        requestProps: { code: "hop" },
-        expectedRouteRegex: "/sets/hop$",
-      },
-      // {
-      //   name: "get by MTGO Code",
-      //   requestProps: { mtgoCode: "pc1" },
-      //   expectedRouteRegex: "/sets/pc1$"
-      // },
-      {
-        name: "get by TCGPlayer ID",
-        requestProps: { tcgplayerId: 84 },
-        expectedRouteRegex: "/sets/tcgplayer/84$",
-      },
-    ])("$name", ({ requestProps, expectedRouteRegex }) => {
-      let clientStub: Mock;
-      let response: Set;
+    let clientStub: Mock;
+    let response: Set;
 
-      beforeAll(async () => {
-        const scryfallResponse = new Response(
-          JSON.stringify({
-            object: "set",
-            id: "cd05036f-2698-43e6-a48e-5c8d82f0a551",
-            code: "cmm",
-            mtgo_code: "cmm",
-            arena_code: "cmm",
-            tcgplayer_id: 23020,
-            name: "Commander Masters",
-            uri: "https://api.scryfall.com/sets/cd05036f-2698-43e6-a48e-5c8d82f0a551",
-            scryfall_uri: "https://scryfall.com/sets/cmm",
-            search_uri:
-              "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Acmm&unique=prints",
-            released_at: "2023-08-04",
-            set_type: "masters",
-            card_count: 8,
-            digital: false,
-            nonfoil_only: false,
-            foil_only: false,
-            icon_svg_uri: "https://svgs.scryfall.io/sets/cmm.svg?1678680000",
-          })
-        );
-        clientStub = vi.fn();
-        clientStub.mockResolvedValue(scryfallResponse);
-        const client = new SetClient(clientStub);
-        response = (await client.getSet(requestProps)) as Set;
-      });
-
-      test("it calls the correct route", () => {
-        expect(clientStub).toHaveBeenCalledOnce();
-        expect(clientStub).toHaveBeenLastCalledWith(expect.stringMatching(expectedRouteRegex));
-      });
-
-      test("Scryfall API response is marshalled", () => {
-        expect(response).toMatchObject<Set>({
+    beforeAll(async () => {
+      const scryfallResponse = new Response(
+        JSON.stringify({
           object: "set",
           id: "cd05036f-2698-43e6-a48e-5c8d82f0a551",
           code: "cmm",
-          mtgoCode: "cmm",
-          arenaCode: "cmm",
-          tcgplayerId: 23020,
+          mtgo_code: "cmm",
+          arena_code: "cmm",
+          tcgplayer_id: 23020,
           name: "Commander Masters",
           uri: "https://api.scryfall.com/sets/cd05036f-2698-43e6-a48e-5c8d82f0a551",
-          scryfallUri: "https://scryfall.com/sets/cmm",
-          searchUri:
+          scryfall_uri: "https://scryfall.com/sets/cmm",
+          search_uri:
             "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Acmm&unique=prints",
-          releasedAt: new Date("2023-08-04"),
-          setType: "masters",
-          cardCount: 8,
+          released_at: "2023-08-04",
+          set_type: "masters",
+          card_count: 8,
           digital: false,
-          nonfoilOnly: false,
-          foilOnly: false,
-          iconSvgUri: "https://svgs.scryfall.io/sets/cmm.svg?1678680000",
-        });
+          nonfoil_only: false,
+          foil_only: false,
+          icon_svg_uri: "https://svgs.scryfall.io/sets/cmm.svg?1678680000",
+        })
+      );
+      clientStub = vi.fn();
+      clientStub.mockResolvedValue(scryfallResponse);
+      const client = new SetClient(clientStub);
+      response = (await client.getSet({ url: "/sets/1234" })) as Set;
+    });
+
+    test("it calls the correct route", () => {
+      expect(clientStub).toHaveBeenCalledOnce();
+      expect(clientStub).toHaveBeenLastCalledWith(expect.stringMatching("/sets/1234$"));
+    });
+
+    test("Scryfall API response is marshalled", () => {
+      expect(response).toMatchObject<Set>({
+        object: "set",
+        id: "cd05036f-2698-43e6-a48e-5c8d82f0a551",
+        code: "cmm",
+        mtgoCode: "cmm",
+        arenaCode: "cmm",
+        tcgplayerId: 23020,
+        name: "Commander Masters",
+        uri: "https://api.scryfall.com/sets/cd05036f-2698-43e6-a48e-5c8d82f0a551",
+        scryfallUri: "https://scryfall.com/sets/cmm",
+        searchUri:
+          "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Acmm&unique=prints",
+        releasedAt: new Date("2023-08-04"),
+        setType: "masters",
+        cardCount: 8,
+        digital: false,
+        nonfoilOnly: false,
+        foilOnly: false,
+        iconSvgUri: "https://svgs.scryfall.io/sets/cmm.svg?1678680000",
       });
     });
   });
