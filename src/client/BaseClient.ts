@@ -5,8 +5,13 @@ import { camel, mapEntries } from "radash";
  */
 export abstract class BaseClient {
   constructor(
-    protected readonly sendRequest: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response> = fetch
+    protected readonly baseOrigin = "https://api.scryfall.com",
+    protected readonly http: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response> = fetch
   ) {}
+
+  protected sendRequest(url: string): Promise<Response> {
+    return this.http(new URL(url, this.baseOrigin).toString());
+  }
 
   /**
    * Get a copy of the supplied object, but with all properties in camel case.
