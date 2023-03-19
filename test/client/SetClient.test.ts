@@ -39,8 +39,8 @@ describe("SetClient", () => {
       );
       clientStub = vi.fn();
       clientStub.mockResolvedValue(scryfallResponse);
-      const client = new SetClient(clientStub);
-      response = (await client.listSets({ url: "/sets" })) as IScryfallList<ISet>;
+      const client = new SetClient("https://example.com", clientStub);
+      response = (await client.listSets({ url: "https://example.com/sets" })) as IScryfallList<ISet>;
     });
 
     test("it calls the correct route", () => {
@@ -107,7 +107,7 @@ describe("SetClient", () => {
       );
       clientStub = vi.fn();
       clientStub.mockResolvedValue(scryfallResponse);
-      const client = new SetClient(clientStub);
+      const client = new SetClient("https://example.com", clientStub);
       response = (await client.getSet({ url: "/sets/1234" })) as ISet;
     });
 

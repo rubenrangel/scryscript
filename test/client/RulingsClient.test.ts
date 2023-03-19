@@ -27,8 +27,8 @@ describe("RulingsClient", () => {
       );
       clientStub = vi.fn();
       clientStub.mockResolvedValue(scryfallResponse);
-      const client = new RulingsClient(clientStub);
-      response = (await client.listRulings({ url: "/rulings" })) as IScryfallList<IRuling>;
+      const client = new RulingsClient("https://example.com/", clientStub);
+      response = (await client.listRulings({ url: "https://example.com/rulings" })) as IScryfallList<IRuling>;
     });
 
     test("it calls the correct route", () => {
