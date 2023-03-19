@@ -9,8 +9,15 @@ export abstract class BaseClient {
     protected readonly http: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response> = fetch
   ) {}
 
-  protected sendRequest(url: string): Promise<Response> {
-    return this.http(new URL(url, this.baseOrigin).toString());
+  protected async sendRequest(url: string): Promise<Response> {
+    const response = await this.http(new URL(url, this.baseOrigin).toString());
+
+    if (response.status >= 400) {
+      // return IError
+      throw this.camelCaseProperties(await response.json());
+    }
+
+    return response;
   }
 
   /**
