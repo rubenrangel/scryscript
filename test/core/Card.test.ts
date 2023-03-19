@@ -10,7 +10,7 @@ import {
   Legalities,
   Rarity,
   SecurityStamp,
-} from "../../src/core/card";
+} from "../../src/core/ICard";
 
 describe("BorderColor", () => {
   test.each([
@@ -61,6 +61,7 @@ describe("Layout", () => {
     [Layout.PLANAR, "planar"],
     [Layout.SCHEME, "scheme"],
     [Layout.VANGUARD, "vanguard"],
+    [Layout.TOKEN, "token"],
     [Layout.DOUBLE_FACED_TOKEN, "double_faced_token"],
     [Layout.EMBLEM, "emblem"],
     [Layout.AUGMENT, "augment"],

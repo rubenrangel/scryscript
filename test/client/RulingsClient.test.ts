@@ -1,12 +1,12 @@
 import { beforeAll, describe, expect, Mock, test, vi } from "vitest";
 import { RulingsClient } from "../../src/client/RulingsClient";
-import { ScryfallList } from "../../src/core/list";
-import { Ruling } from "../../src/core/ruling";
+import { IScryfallList } from "../../src/core/IList";
+import { IRuling } from "../../src/core/IRuling";
 
 describe("RulingsClient", () => {
   describe("listRulings", () => {
     let clientStub: Mock;
-    let response: ScryfallList<Ruling>;
+    let response: IScryfallList<IRuling>;
 
     beforeAll(async () => {
       const scryfallResponse = new Response(
@@ -28,7 +28,7 @@ describe("RulingsClient", () => {
       clientStub = vi.fn();
       clientStub.mockResolvedValue(scryfallResponse);
       const client = new RulingsClient(clientStub);
-      response = (await client.listRulings({ url: "/rulings" })) as ScryfallList<Ruling>;
+      response = (await client.listRulings({ url: "/rulings" })) as IScryfallList<IRuling>;
     });
 
     test("it calls the correct route", () => {
@@ -37,7 +37,7 @@ describe("RulingsClient", () => {
     });
 
     test("Scryfall API response is marshalled", () => {
-      expect(response).toMatchObject<ScryfallList<Ruling>>({
+      expect(response).toMatchObject<IScryfallList<IRuling>>({
         object: "list",
         hasMore: false,
         data: [

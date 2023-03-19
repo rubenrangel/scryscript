@@ -1,5 +1,5 @@
-import { IScryfallObject } from "./iscryfall-object";
-import { SetType } from "./set-type";
+import { IScryfallObject } from "./IScryfallObject";
+import { SetType } from "./SetType";
 
 /**
  * A Set object represents a group of related Magic cards. All Card objects on Scryfall belong to exactly one set.
@@ -7,7 +7,7 @@ import { SetType } from "./set-type";
  * Due to Magic’s long and complicated history, Scryfall includes many un-official sets as a way to group promotional or
  * outlier cards together. Such sets will likely have a code that begins with `p` or `t`, such as `pcel` or `tori`.
  */
-export interface Set extends IScryfallObject {
+export interface ISet extends IScryfallObject {
   /**
    * @inheritDoc
    */

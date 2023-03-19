@@ -1,4 +1,4 @@
-import { IScryfallObject } from "./iscryfall-object";
+import { IScryfallObject } from "./IScryfallObject";
 
 /**
  * Rulings represent Oracle rulings, Wizards of the Coast set release notes, or Scryfall notes for a particular card.
@@ -9,7 +9,7 @@ import { IScryfallObject } from "./iscryfall-object";
  * Rulings with a `scryfall` source have been added by the Scryfall team, either to provide additional context for the
  * card, or explain how the card works in an unofficial format (such as Duel Commander).
  */
-export interface Ruling extends IScryfallObject {
+export interface IRuling extends IScryfallObject {
   /**
    * @inheritDoc
    */

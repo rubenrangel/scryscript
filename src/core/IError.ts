@@ -1,4 +1,4 @@
-import { IScryfallObject } from "./iscryfall-object";
+import { IScryfallObject } from "./IScryfallObject";
 
 /**
  * An Error object represents a failure to find information or understand the input you provided to the API.

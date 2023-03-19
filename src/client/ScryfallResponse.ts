@@ -1,4 +1,4 @@
-import { IError } from "../core/ierror";
-import { IScryfallObject } from "../core/iscryfall-object";
+import { IError } from "../core/IError";
+import { IScryfallObject } from "../core/IScryfallObject";
 
 export type ScryfallResponse<ScryfallObject extends IScryfallObject> = IError | ScryfallObject;

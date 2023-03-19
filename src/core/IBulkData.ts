@@ -1,4 +1,4 @@
-import { IScryfallObject } from "./iscryfall-object";
+import { IScryfallObject } from "./IScryfallObject";
 
 /**
  * Scryfall provides daily exports of our card data in bulk files. Each of these files is represented as a `bulk_data`
