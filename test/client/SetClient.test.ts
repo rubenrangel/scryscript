@@ -35,7 +35,10 @@ describe("SetClient", () => {
               icon_svg_uri: "https://svgs.scryfall.io/sets/cmm.svg?1678680000",
             },
           ],
-        })
+        }),
+        {
+          status: 200,
+        }
       );
       clientStub = vi.fn();
       clientStub.mockResolvedValue(scryfallResponse);
@@ -103,7 +106,10 @@ describe("SetClient", () => {
           nonfoil_only: false,
           foil_only: false,
           icon_svg_uri: "https://svgs.scryfall.io/sets/cmm.svg?1678680000",
-        })
+        }),
+        {
+          status: 200,
+        }
       );
       clientStub = vi.fn();
       clientStub.mockResolvedValue(scryfallResponse);

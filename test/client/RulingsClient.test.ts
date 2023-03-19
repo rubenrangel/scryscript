@@ -23,7 +23,10 @@ describe("RulingsClient", () => {
                 "You choose the mode as the triggered ability goes on the stack. You can choose a mode that requires targets only if there are legal targets available.",
             },
           ],
-        })
+        }),
+        {
+          status: 200,
+        }
       );
       clientStub = vi.fn();
       clientStub.mockResolvedValue(scryfallResponse);

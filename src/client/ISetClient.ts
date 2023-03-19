@@ -1,5 +1,4 @@
 import { IScryfallRequest, ScryfallRequest } from "./IScryfallRequest";
-import { ScryfallResponse } from "./ScryfallResponse";
 import { IScryfallList } from "../core/IList";
 import { ISet } from "../core/ISet";
 
@@ -35,10 +34,10 @@ export interface ISetClient {
   /**
    * Get all Sets from Scryfall.
    */
-  listSets(request: IListSetsRequest): Promise<ScryfallResponse<IScryfallList<ISet>>>;
+  listSets(request: IListSetsRequest): Promise<IScryfallList<ISet>>;
 
   /**
    * Get a Set from Scryfall.
    */
-  getSet(request: IGetSetRequest): Promise<ScryfallResponse<ISet>>;
+  getSet(request: IGetSetRequest): Promise<ISet>;
 }

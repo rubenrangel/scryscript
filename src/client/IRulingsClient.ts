@@ -1,5 +1,4 @@
 import { IScryfallRequest, ScryfallRequest } from "./IScryfallRequest";
-import { ScryfallResponse } from "./ScryfallResponse";
 import { IScryfallList } from "../core/IList";
 import { IRuling } from "../core/IRuling";
 
@@ -91,5 +90,5 @@ export interface IRulingsClient {
   /**
    * Retrieve the rulings for a card.
    */
-  listRulings(props: IListRulingsRequest): Promise<ScryfallResponse<IScryfallList<IRuling>>>;
+  listRulings(props: IListRulingsRequest): Promise<IScryfallList<IRuling>>;
 }

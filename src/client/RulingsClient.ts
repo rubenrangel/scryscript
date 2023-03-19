@@ -1,6 +1,5 @@
 import { BaseClient } from "./BaseClient";
-import { IRulingsClient, IListRulingsRequest } from "./IRulingsClient";
-import { ScryfallResponse } from "./ScryfallResponse";
+import { IListRulingsRequest, IRulingsClient } from "./IRulingsClient";
 import { IScryfallList } from "../core/IList";
 import { IRuling } from "../core/IRuling";
 
@@ -14,7 +13,7 @@ export class RulingsClient extends BaseClient implements IRulingsClient {
   /**
    * @inheritDoc
    */
-  async listRulings(props: IListRulingsRequest): Promise<ScryfallResponse<IScryfallList<IRuling>>> {
+  async listRulings(props: IListRulingsRequest): Promise<IScryfallList<IRuling>> {
     const response = await this.sendRequest(props.url);
     const rulingsData = this.camelCaseProperties(await response.json());
     const rulingList = this.transformList(rulingsData, this.transformRulingData);
