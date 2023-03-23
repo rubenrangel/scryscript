@@ -1,13 +1,51 @@
 import { BaseClient } from "./BaseClient";
-import { IGetSetRequest, IListSetsRequest, ISetClient } from "./ISetClient";
+import { IScryfallRequest, ScryfallRequest } from "./IScryfallRequest";
 import { IScryfallList } from "../core/IList";
-import { ISet } from "../core/ISet";
+import { ISet, ScryfallSet } from "../core/ScryfallSet";
+
+export interface IListSetsRequest extends IScryfallRequest {}
+
+export class ListSetsRequest extends ScryfallRequest {
+  constructor() {
+    super("/sets");
+  }
+}
+
+export interface IGetSetRequest extends IScryfallRequest {}
+
+export class GetSetIdRequest extends ScryfallRequest implements IGetSetRequest {
+  constructor(props: { id: string }) {
+    super(`/sets/${props.id}`);
+  }
+}
+
+export class GetSetCodeRequest extends ScryfallRequest implements IGetSetRequest {
+  constructor(props: { setCode: string }) {
+    super(`/sets/${props.setCode}`);
+  }
+}
+
+export class GetSetTcgPlayerIdRequest extends ScryfallRequest implements IGetSetRequest {
+  constructor(props: { tcgplayerId: number }) {
+    super(`/sets/tcgplayer/${props.tcgplayerId}`);
+  }
+}
+
+export interface ISetClient {
+  /**
+   * Get all Sets from Scryfall.
+   */
+  listSets(request: IListSetsRequest): Promise<IScryfallList<ISet>>;
+
+  /**
+   * Get a Set from Scryfall.
+   */
+  getSet(request: IGetSetRequest): Promise<ISet>;
+}
 
 export class SetClient extends BaseClient implements ISetClient {
-  protected transformSet(set: Record<string, unknown>): ISet {
-    set.releasedAt = new Date(set.releasedAt as string);
-
-    return set as unknown as ISet;
+  protected transformSet(setData: Record<string, unknown>): ISet {
+    return new ScryfallSet(setData as unknown as ISet);
   }
 
   async listSets(request: IListSetsRequest): Promise<IScryfallList<ISet>> {
