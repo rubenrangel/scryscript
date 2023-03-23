@@ -1,7 +1,45 @@
 import { beforeAll, describe, expect, Mock, test, vi } from "vitest";
-import { SetClient } from "../../src/client/SetClient";
+import {
+  GetSetCodeRequest,
+  GetSetIdRequest,
+  GetSetTcgPlayerIdRequest,
+  ListSetsRequest,
+  SetClient,
+} from "../../src/client/SetClient";
 import { IScryfallList } from "../../src/core/IList";
-import { ISet } from "../../src/core/ISet";
+import { ISet } from "../../src/core/ScryfallSet";
+
+describe("ListSetsRequest", () => {
+  test("it returns the correct URL", () => {
+    const request = new ListSetsRequest();
+
+    expect(request.url).toEqual("/sets");
+  });
+});
+
+describe("GetSetIdRequest", () => {
+  test("it returns the correct URL", () => {
+    const request = new GetSetIdRequest({ id: "1234" });
+
+    expect(request.url).toEqual("/sets/1234");
+  });
+});
+
+describe("GetSetCodeRequest", () => {
+  test("it returns the correct URL", () => {
+    const request = new GetSetCodeRequest({ setCode: "mm1" });
+
+    expect(request.url).toEqual("/sets/mm1");
+  });
+});
+
+describe("GetSetTcgPlayerIdRequest", () => {
+  test("it returns the correct URL", () => {
+    const request = new GetSetTcgPlayerIdRequest({ tcgplayerId: 24 });
+
+    expect(request.url).toEqual("/sets/tcgplayer/24");
+  });
+});
 
 describe("SetClient", () => {
   describe("listSets", () => {
@@ -52,7 +90,7 @@ describe("SetClient", () => {
     });
 
     test("Scryfall API response is marshalled", () => {
-      expect(response).toMatchObject<IScryfallList<ISet>>({
+      expect(response).toEqual<IScryfallList<ISet>>({
         object: "list",
         hasMore: false,
         data: [
@@ -68,7 +106,7 @@ describe("SetClient", () => {
             scryfallUri: "https://scryfall.com/sets/cmm",
             searchUri:
               "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Acmm&unique=prints",
-            releasedAt: new Date("2023-08-04"),
+            releasedAt: "2023-08-04",
             setType: "masters",
             cardCount: 8,
             digital: false,
@@ -123,7 +161,7 @@ describe("SetClient", () => {
     });
 
     test("Scryfall API response is marshalled", () => {
-      expect(response).toMatchObject<ISet>({
+      expect(response).toEqual<ISet>({
         object: "set",
         id: "cd05036f-2698-43e6-a48e-5c8d82f0a551",
         code: "cmm",
@@ -135,7 +173,7 @@ describe("SetClient", () => {
         scryfallUri: "https://scryfall.com/sets/cmm",
         searchUri:
           "https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3Acmm&unique=prints",
-        releasedAt: new Date("2023-08-04"),
+        releasedAt: "2023-08-04",
         setType: "masters",
         cardCount: 8,
         digital: false,
