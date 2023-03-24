@@ -44,19 +44,19 @@ export interface ISetClient {
 }
 
 export class SetClient extends BaseClient implements ISetClient {
-  protected transformSet(setData: Record<string, unknown>): ISet {
+  protected transformSet(setData: Record<string, unknown>): ScryfallSet {
     return new ScryfallSet(setData as unknown as ISet);
   }
 
-  async listSets(request: IListSetsRequest): Promise<IScryfallList<ISet>> {
+  async listSets(request: IListSetsRequest): Promise<IScryfallList<ScryfallSet>> {
     const response = await this.sendRequest(request.url);
     const setsData = this.camelCaseProperties(await response.json());
     const setsList = this.transformList(setsData, this.transformSet);
 
-    return setsList as unknown as IScryfallList<ISet>;
+    return setsList as unknown as IScryfallList<ScryfallSet>;
   }
 
-  async getSet(request: IGetSetRequest): Promise<ISet> {
+  async getSet(request: IGetSetRequest): Promise<ScryfallSet> {
     const response = await this.sendRequest(request.url);
     const setData = await response.json();
 
