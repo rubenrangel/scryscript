@@ -23,7 +23,7 @@ export interface IRuling extends IScryfallObject {
   /**
    * The date when the ruling or note was published
    */
-  publishedAt: Date;
+  publishedAt: string;
 
   /**
    * The text of the ruling.
@@ -34,4 +34,31 @@ export interface IRuling extends IScryfallObject {
    * Oracle ID of the card.
    */
   oracleId?: string | null;
+}
+
+export interface IExtendedRuling extends IRuling {
+  publishedAtDate: Date;
+}
+
+export class Ruling implements IExtendedRuling {
+  static fromRuling(ruling: IRuling) {
+    return new this(ruling);
+  }
+
+  object = "ruling" as const;
+  source: string;
+  publishedAt: string;
+  comment: string;
+  oracleId: string | null | undefined;
+
+  constructor(props: { comment: string; oracleId?: string | null; publishedAt: string; source: string }) {
+    this.comment = props.comment;
+    this.oracleId = props.oracleId;
+    this.publishedAt = props.publishedAt;
+    this.source = props.source;
+  }
+
+  get publishedAtDate() {
+    return new Date(this.publishedAt);
+  }
 }
