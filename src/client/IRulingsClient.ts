@@ -1,6 +1,6 @@
 import { IScryfallRequest, ScryfallRequest } from "./IScryfallRequest";
 import { IScryfallList } from "../core/IList";
-import { IRuling } from "../core/IRuling";
+import { IRuling } from "../core/Ruling";
 
 /**
  * A request to retrieve rulings for a card.

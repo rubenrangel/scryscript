@@ -1,12 +1,12 @@
 import { beforeAll, describe, expect, Mock, test, vi } from "vitest";
 import { RulingsClient } from "../../src/client/RulingsClient";
 import { IScryfallList } from "../../src/core/IList";
-import { IRuling } from "../../src/core/IRuling";
+import { Ruling } from "../../src/core/Ruling";
 
 describe("RulingsClient", () => {
   describe("listRulings", () => {
     let clientStub: Mock;
-    let response: IScryfallList<IRuling>;
+    let response: IScryfallList<Ruling>;
 
     beforeAll(async () => {
       const scryfallResponse = new Response(
@@ -31,7 +31,7 @@ describe("RulingsClient", () => {
       clientStub = vi.fn();
       clientStub.mockResolvedValue(scryfallResponse);
       const client = new RulingsClient("https://example.com/", clientStub);
-      response = (await client.listRulings({ url: "https://example.com/rulings" })) as IScryfallList<IRuling>;
+      response = await client.listRulings({ url: "https://example.com/rulings" });
     });
 
     test("it calls the correct route", () => {
@@ -40,18 +40,17 @@ describe("RulingsClient", () => {
     });
 
     test("Scryfall API response is marshalled", () => {
-      expect(response).toMatchObject<IScryfallList<IRuling>>({
+      expect(response).toMatchObject<IScryfallList<Ruling>>({
         object: "list",
         hasMore: false,
         data: [
-          {
-            object: "ruling",
+          new Ruling({
             oracleId: "19a2f0a0-9e68-4982-a5f5-b77d805befd7",
             source: "wotc",
-            publishedAt: new Date("2015-06-22"),
+            publishedAt: "2015-06-22",
             comment:
               "You choose the mode as the triggered ability goes on the stack. You can choose a mode that requires targets only if there are legal targets available.",
-          },
+          }),
         ],
       });
     });
